@@ -35,9 +35,9 @@ By following the below commands, we should be able to determine which commit the
    git bisect bad
    ```
 3. **Mark a known good commit**:
-  - For simplicity sake, the most recent good commit is: 
+  - For simplicity sake, the most recent good commit is: eff9026
    ```sh
-   git bisect good <SHA-of-good-commit>
+   git bisect good eff9026
    ```
 4. **Git will now checkout a commit in the middle. Test this commit**:
   - Test the commit with `npm run test`.
@@ -50,7 +50,23 @@ By following the below commands, we should be able to determine which commit the
     git bisect good
     ```
 5. **Repeat step 4 until Git narrows down the exact commit that introduced the issue.**
-6. **Once the bad commit is found, end the bisect process and we'll continue with using rebase to amend the problematic commit**:
+  When the bad commit is found, you should see something like the following:
+    ```sh
+    a74744f2c262811c392232048e0bd8298aea7307 is the first bad commit
+    commit a74744f2c262811c392232048e0bd8298aea7307
+    Author: AdamHardieAC <adam.hardie@arnoldclark.com>
+    Date:   Mon Feb 17 16:06:36 2025 +0000
+
+        subtraction functionality + test suite
+
+    spec/add.test.js        |  2 +-
+    spec/subtract.test.js   | 21 +++++++++++++++++++++
+    src/modules/subtract.js |  4 ++++
+    3 files changed, 26 insertions(+), 1 deletion(-)
+    create mode 100644 spec/subtract.test.js
+    create mode 100644 src/modules/subtract.js
+    ```
+6. **Once the bad commit is found, take note of the commit SHA value and end the bisect process, we'll continue with using rebase to amend the problematic commit**:
    ```sh
    git bisect reset
    ```
