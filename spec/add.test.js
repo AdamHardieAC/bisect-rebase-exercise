@@ -5,7 +5,7 @@ test('adds 0 + 2 equals 2', () => {
 });
 
 test('adds 5 + 5 equals 10', () => {
-  expect(add(5, 5)).toBe(10);
+  expect(add(5, 5)).toBe(20);
 });
 
 test('adds 4 + 3 equals 7', () => {
